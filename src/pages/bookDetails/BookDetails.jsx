@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { use } from 'react';
 import { useParams } from 'react-router';
+import { BookContext } from '../../context/BookContext';
 
 const booksPromise = fetch("/booksData.json").then((res) => res.json());
 
 const BookDetails = () => {
     const { id } = useParams();
-    console.log(id);
+    // console.log(id);
 
     const books = use(booksPromise);
 
     const expectedBook = books.find(book => book.bookId == id);
+
+
+    const { handleMarkAsRead, storedBooks, wishListBooks, handleWishLishtBook, } = useContext(BookContext);
+
+    // console.log(storedBooks, "stored");
+
+
+    // console.log(bookContext, "book context");
     // console.log(expectedBook);
     const { bookId, bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing, } = expectedBook;
-    // console.log(books);
+    // console.log(books);'
+
+
+
     return (
         <div className="grid grid-cols-2 card lg:card-side bg-base-100 shadow-sm container mx-auto">
             <figure className='w-full flex items-center justify-center bg-gray-100 rounded-xl my-10'>
@@ -40,8 +52,8 @@ const BookDetails = () => {
                     <div className='flex justify-between items-center gap-2'>
                         <span>Rating: </span>  <span> {rating} </span>
                     </div>
-                    <button className="btn btn-primary">Read</button>
-                    <button className="btn btn-primary">Wishlist</button>
+                    <button className="btn btn-primary" onClick={() => handleMarkAsRead(expectedBook)}>Mark as Read</button>
+                    <button className="btn btn-primary" onClick={() => handleWishLishtBook(expectedBook)}>Add to Wishlist</button>
                 </div>
             </div>
         </div>

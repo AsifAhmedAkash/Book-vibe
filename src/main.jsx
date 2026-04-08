@@ -4,7 +4,9 @@ import './index.css'
 
 import { RouterProvider } from "react-router/dom";
 import { router } from './routes/Routes';
-
+// import BookContext from './context/BookContext';
+import BookProvider from './context/BookContext';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -12,6 +14,10 @@ import { router } from './routes/Routes';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <BookProvider>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </BookProvider>
+
   </StrictMode>,
 )
