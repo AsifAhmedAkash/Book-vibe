@@ -8,8 +8,8 @@ const Navbar = () => {
         <li><NavLink className={({ isActive }) => `font-semibold ${isActive ? "text-green-500 border border-green-500" : ""}`} to={"/sd"}>Page to Read</NavLink></li>
     </>
     return (
-        <div>
-            <div className="navbar bg-base-100 shadow-sm container mx-auto">
+        <nav className='bg-base-100 shadow-sm'>
+            <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -33,7 +33,8 @@ const Navbar = () => {
                     <button className="btn btn-accent text-white">Signup</button>
                 </div>
             </div>
-        </div>
+        </nav>
+
     );
 };
 
